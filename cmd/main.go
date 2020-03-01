@@ -25,6 +25,6 @@ import (
 func main() {
 
 	s := scanner.New(os.Stdin)
-	s.Process()
+	s.Uppercaser()
 
 }
