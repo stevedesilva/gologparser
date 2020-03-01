@@ -1,13 +1,10 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"os"
+	// "bufio"
+	// "fmt"
+	// "os"
 )
-
-
-package main
 
 // ---------------------------------------------------------
 // EXERCISE: Uppercaser
@@ -26,10 +23,10 @@ package main
 // ---------------------------------------------------------
 
 func main() {
-		in := bufio.NewScanner(os.Stdin)
-	var lines int
-	for in.Scan() {
-		lines++
-		fmt.Println("Scanned text :", in.Text())
-	}
+	// in := bufio.NewScanner(os.Stdin)
+	// var lines int
+	// for in.Scan() {
+	// 	lines++
+	// 	fmt.Println("Scanned text :", in.Text())
+	// }
 }
