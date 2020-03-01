@@ -1,9 +1,9 @@
 package main
 
 import (
-	// "bufio"
-	// "fmt"
-	// "os"
+	"os"
+
+	"github.com/stevedesilva/gologparser/scanner"
 )
 
 // ---------------------------------------------------------
@@ -23,10 +23,8 @@ import (
 // ---------------------------------------------------------
 
 func main() {
-	// in := bufio.NewScanner(os.Stdin)
-	// var lines int
-	// for in.Scan() {
-	// 	lines++
-	// 	fmt.Println("Scanned text :", in.Text())
-	// }
+
+	s := scanner.New()
+	s.Process(os.Stdin)
+
 }
