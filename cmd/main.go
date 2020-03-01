@@ -24,7 +24,7 @@ import (
 
 func main() {
 
-	s := scanner.New()
-	s.Process(os.Stdin)
+	s := scanner.New(os.Stdin)
+	s.Process()
 
 }
