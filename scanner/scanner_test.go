@@ -9,14 +9,16 @@ import (
 )
 
 func TestScannerReturnsNew(t *testing.T) {
-	s := scanner.New()
+	s := scanner.New(strings.NewReader("test"))
 	assert.NotNil(t, s)
 }
 
 func TestScannerShouldConvertLinesToUpperCase(t *testing.T) {
-	s := scanner.New()
+	
 	reader := strings.NewReader("test sentence one\ntest sentence two\ntest sentence three")
-	result := s.Process(reader)
+	s := scanner.New(reader)
+
+	result := s.Uppercaser()
 
 	expected := []string{
 		"TEST SENTENCE ONE",

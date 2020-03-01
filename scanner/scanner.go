@@ -7,24 +7,32 @@ import (
 	"strings"
 )
 
-// Scanner type
-type Scanner struct{}
-
-// New construct
-func New() *Scanner {
-	return &Scanner{}
+// MyScanner type
+type MyScanner struct {
+	r io.Reader
 }
 
-// Process method
-func (s *Scanner) Process(r io.Reader) []string {
-	in := bufio.NewScanner(r)
-	result := []string{}
+// New construct
+func New(reader io.Reader) *MyScanner {
+	return &MyScanner{
+		r: reader,
+	}
+}
+
+// Uppercaser converts input to uppercase
+func (s *MyScanner) Uppercaser() (result []string) {
+
+	in := s.newscanner()
 	for in.Scan() {
 		line := strings.ToUpper(in.Text())
 		fmt.Println(line)
 		result = append(result, line)
-
 	}
 
-	return result
+	return
+}
+
+// Process method
+func (s *MyScanner) newscanner() *bufio.Scanner {
+	return bufio.NewScanner(s.r)
 }
