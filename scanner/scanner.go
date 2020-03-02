@@ -58,7 +58,7 @@ func (s *MyScanner) Uppercaser() (result []string) {
 // ---------------------------------------------------------
 func (s *MyScanner) UniqueWords() (total, unique int) {
 	// find any character except letters 1 or more times
-	rx := regexp.MustCompile(`[^a-z]+`)
+	rx := regexp.MustCompile(`[^A-Za-z]+`)
 
 	in := s.newscanner()
 	in.Split(bufio.ScanWords)
