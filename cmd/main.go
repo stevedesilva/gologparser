@@ -25,6 +25,8 @@ import (
 func main() {
 
 	s := scanner.New(os.Stdin)
-	s.Uppercaser()
+	//s.Uppercaser()
+	s.UniqueWords()
+	
 
 }
