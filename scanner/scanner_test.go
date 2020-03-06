@@ -14,7 +14,7 @@ func TestScannerReturnsNew(t *testing.T) {
 }
 
 func TestScannerShouldConvertLinesToUpperCase(t *testing.T) {
-	
+
 	reader := strings.NewReader("test sentence one\ntest sentence two\ntest sentence three")
 	s := scanner.New(reader)
 
@@ -32,11 +32,11 @@ func TestScannerShouldConvertLinesToUpperCase(t *testing.T) {
 
 // There are 99 words, 70 of them are unique.
 func TestScannerShouldReturnTotalAndUniqueWords(t *testing.T) {
-	
+
 	reader := strings.NewReader("test sentence one\ntest sentence two\ntest sentence three")
 	s := scanner.New(reader)
 
-	total,unique := s.UniqueWords()
+	total, unique := s.UniqueWords()
 
 	expectedTotal := 9
 	expectedUnique := 5
