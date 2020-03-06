@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/stevedesilva/gologparser/scanner"
@@ -24,9 +25,27 @@ import (
 
 func main() {
 
-	s := scanner.New(os.Stdin)
+	//s := scanner.New(os.Stdin)
 	//s.Uppercaser()
-	s.UniqueWords()
-	
+	// s.UniqueWords()
 
+	if args := os.Args[1:]; len(args) != 1 {
+		fmt.Println("Only one pattern should be supplied!")
+	} else {
+		pattern := args[0]
+
+		fmt.Println("pattern = ", pattern)
+		sp := scanner.NewPattern(os.Stdin, pattern)
+
+		r := sp.GrepClone()
+		printMatchedGrepClone(r)
+	}
+
+}
+
+func printMatchedGrepClone(r []string) {
+	fmt.Println("Matched :")
+	for _, v := range r {
+		fmt.Printf("%v \n", v)
+	}
 }

@@ -11,12 +11,21 @@ import (
 // MyScanner type
 type MyScanner struct {
 	r io.Reader
+	p string
 }
 
 // New construct
 func New(reader io.Reader) *MyScanner {
 	return &MyScanner{
 		r: reader,
+	}
+}
+
+// NewPattern construct with pattern
+func NewPattern(reader io.Reader, pattern string) *MyScanner {
+	return &MyScanner{
+		r: reader,
+		p: pattern,
 	}
 }
 
@@ -86,4 +95,45 @@ func (s *MyScanner) UniqueWords() (total, unique int) {
 // Process method
 func (s *MyScanner) newscanner() *bufio.Scanner {
 	return bufio.NewScanner(s.r)
+}
+
+// GrepClone struct
+// ---------------------------------------------------------
+// EXERCISE: Grep Clone
+//
+//  Create a grep clone. grep is a command-line utility for
+//  searching plain-text data for lines that match a specific
+//  pattern.
+//
+//  1. Feed the shakespeare.txt to your program.
+//
+//  2. Accept a command-line argument for the pattern
+//
+//  3. Only print the lines that contains that pattern
+//
+//  4. If no pattern is provided, print all the lines
+//
+//
+// EXPECTED OUTPUT
+//
+//  go run main.go come < shakespeare.txt
+//
+//    come night come romeo come thou day in night
+//    come gentle night come loving black-browed night
+//
+// ---------------------------------------------------------
+func (s *MyScanner) GrepClone() (results []string) {
+
+	in := s.newscanner()
+	rxPattern := regexp.MustCompile(s.p)
+	for in.Scan() {
+
+		input := in.Text()
+		if rxPattern.MatchString(input) {
+			results = append(results, input)
+		}
+
+	}
+
+	return
 }

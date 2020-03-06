@@ -45,3 +45,35 @@ func TestScannerShouldReturnTotalAndUniqueWords(t *testing.T) {
 	assert.Equal(t, expectedTotal, total)
 	assert.Equal(t, expectedUnique, unique)
 }
+
+func TestScannerGrepOnlyShouldReturnAllLinesWhenNoInput(t *testing.T) {
+
+	reader := strings.NewReader("test sentence one\ntest sentence two\ntest sentence three")
+	s := scanner.New(reader)
+
+	result := s.GrepClone()
+
+	expected := []string{
+		"test sentence one",
+		"test sentence two",
+		"test sentence three",
+	}
+
+	assert.NotNil(t, s)
+	assert.Equal(t, expected, result)
+}
+
+func TestScannerGrepOnlyShouldReturnLinesWhichMatchPattern(t *testing.T) {
+
+	reader := strings.NewReader("test sentence one\ntest sentence two\ntest sentence three")
+	s := scanner.NewPattern(reader, "one")
+
+	result := s.GrepClone()
+
+	expected := []string{
+		"test sentence one",
+	}
+
+	assert.NotNil(t, s)
+	assert.Equal(t, expected, result)
+}
