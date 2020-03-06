@@ -77,3 +77,43 @@ func TestScannerGrepOnlyShouldReturnLinesWhichMatchPattern(t *testing.T) {
 	assert.NotNil(t, s)
 	assert.Equal(t, expected, result)
 }
+
+// ---------------------------------------------------------
+// EXERCISE: Quit
+//
+//  Create a program that quits when a user types the
+//  same word twice.
+//
+//
+// RESTRICTION
+//
+//  The program should work case insensitive.
+//
+//
+// EXPECTED OUTPUT
+//
+//  go run main.go
+//
+//   hey
+//   HEY
+//   TWICE!
+//
+//  go run main.go
+//
+//   hey
+//   hi
+//   HEY
+//   TWICE!
+// ---------------------------------------------------------
+func TestScannerQuitShouldExitWhenSameWordIsTypeTwice(t *testing.T) {
+
+
+	reader := strings.NewReader("one\ntwo\none")
+	s := scanner.New(reader)
+
+	result := s.Quit()
+
+	expected := "TWICE"
+	assert.NotNil(t, s)
+	assert.Equal(t, expected, result)
+}

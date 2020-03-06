@@ -12,6 +12,7 @@ import (
 type MyScanner struct {
 	r io.Reader
 	p string
+	a []string
 }
 
 // New construct
@@ -28,6 +29,7 @@ func NewPattern(reader io.Reader, pattern string) *MyScanner {
 		p: pattern,
 	}
 }
+
 
 // Uppercaser converts input to uppercase
 func (s *MyScanner) Uppercaser() (result []string) {
@@ -135,5 +137,53 @@ func (s *MyScanner) GrepClone() (results []string) {
 
 	}
 
+	return
+}
+
+// Quit exe
+// ---------------------------------------------------------
+// EXERCISE: Quit
+//
+//  Create a program that quits when a user types the
+//  same word twice.
+//
+//
+// RESTRICTION
+//
+//  The program should work case insensitive.
+//
+//
+// EXPECTED OUTPUT
+//
+//  go run main.go
+//
+//   hey
+//   HEY
+//   TWICE!
+//
+//  go run main.go
+//
+//   hey
+//   hi
+//   HEY
+//   TWICE!
+// ---------------------------------------------------------
+func (s *MyScanner) Quit() (result string) {
+	const twice = "TWICE"
+	found := make(map[string]bool)
+	in := s.newscanner()
+
+	for in.Scan() {
+
+		input := strings.ToLower(in.Text())
+
+		if found[input] {
+			fmt.Println(twice, input)
+			return twice
+		}
+		fmt.Println("Adding", input)
+		found[input] = true
+
+	}
 	return
 }
