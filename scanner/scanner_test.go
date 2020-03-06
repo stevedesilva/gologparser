@@ -117,3 +117,22 @@ func TestScannerQuitShouldExitWhenSameWordIsTypeTwice(t *testing.T) {
 	assert.NotNil(t, s)
 	assert.Equal(t, expected, result)
 }
+
+
+func TestScannerLogParserShouldReturnErrWhenWrongInput(t *testing.T) {
+
+	
+	reader := strings.NewReader("test sentence one\ntest sentence two\ntest sentence three")
+	s := scanner.New(reader)
+
+	result := s.Uppercaser()
+
+	expected := []string{
+		"TEST SENTENCE ONE",
+		"TEST SENTENCE TWO",
+		"TEST SENTENCE THREE",
+	}
+
+	assert.NotNil(t, s)
+	assert.Equal(t, expected, result)
+}

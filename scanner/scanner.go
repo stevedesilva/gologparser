@@ -187,3 +187,8 @@ func (s *MyScanner) Quit() (result string) {
 	}
 	return
 }
+
+// LogParser exe
+func (s *MyScanner) LogParser() {
+	
+}
