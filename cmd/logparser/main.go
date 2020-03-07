@@ -1,12 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/stevedesilva/gologparser/scanner"
 )
-
 
 // ---------------------------------------------------------
 // EXERCISE: Log Parser from Stratch
@@ -47,5 +45,4 @@ import (
 func main() {
 	s := scanner.New(os.Stdin)
 	s.LogParser()
-
 }

@@ -27,7 +27,6 @@ func main() {
 	grepClonePrinter()
 }
 
-
 func grepClonePrinter() {
 	if args := os.Args[1:]; len(args) != 1 {
 		fmt.Println("Only one pattern should be supplied!")
@@ -42,7 +41,6 @@ func grepClonePrinter() {
 	}
 
 }
-
 
 func printMatchedGrepClone(r []string) {
 	fmt.Println("Matched :")
