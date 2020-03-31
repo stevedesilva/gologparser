@@ -226,7 +226,7 @@ func (s *MyScanner) Quit() (result string) {
 //   wrong input: "FOUR" (line #3)
 //
 // ---------------------------------------------------------
-func (s *MyScanner) LogParser() (result string) {
+func (s *MyScanner) LogParser() (result string, err error) {
 	var (
 		sum     = make(map[string]int, 0)
 		domains []string
@@ -240,15 +240,15 @@ func (s *MyScanner) LogParser() (result string) {
 		// convert input to lower
 		fields := strings.Fields(in.Text())
 		if len(fields) != 2 {
-			fmt.Printf("Wrong input: %v (line #%d)\n", fields, lines)
-			return
+			err := fmt.Errorf("wrong input: %v (line #%d)", fields, lines)
+			return result, err
 		}
 
 		domain := fields[0]
 		visits, err := strconv.Atoi(fields[1])
 		if visits < 0 || err != nil {
-			fmt.Printf("Wrong input: %q (line #%d) \n", fields[1], lines)
-			return
+			err := fmt.Errorf("wrong input: %v (line #%d)", fields[1], lines)
+			return result, err
 		}
 
 		if _, ok := sum[domain]; !ok {
@@ -270,7 +270,7 @@ func (s *MyScanner) LogParser() (result string) {
 	fmt.Printf("\n%-30s %-10d\n", "TOTAL", total)
 
 	if err := in.Err(); err != nil {
-		fmt.Println("> Err:", err)
+		return result, err
 	}
 	return
 }
